@@ -122,8 +122,10 @@ export default {
     //更换登录左边的图
     replacePic(){
       var div = document.querySelector(".ts-leftbg")
-      var img = div.querySelector("img")
-      img.src=""
+      var loginLeftimg = div.querySelector("img")
+      loginLeftimg.src=""
+      var bgdiv = document.querySelector(".ts-loginbg")
+      var bgimg = bgdiv.style.background = "url('https://static.zhihu.com/heifetz/assets/sign_bg.db29b0fb.png')"
     },
     // 图形验证码
     getVerifyCode() {},
