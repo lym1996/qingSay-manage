@@ -28,19 +28,42 @@ const get = (obj) => axios.get(obj, objBase).then(codeerror).catch(errorFn)
 const postfile =  (_url, obj) => axios.post(_url, obj,{ baseURL: baseURL,headers:{'Content-Type':'multipart/form-data'}}).then(codeerror).catch(errorFn)
 
 //需要的接口写下面
-const registrate = (param) => post2('/user/registration',param)
-const huoqu = (param) => post('/article/folder/save',param)
-const list = (token) => get('/article/listArticleFolder?token='+token)
-//获取本周排班信息
-const getWeekSchdule = (token,departmentId,type) => get('/scheduling/getWeak?token='+token+'&sectionId='+departmentId+'&type='+type)
-//获取具体日期上下午排班
-const getDaySchdule = (token,departmentId,timeType,date) => get('/scheduling/getByDate?token='+token+'&sectionId='+departmentId+'&timeType='+timeType+'&date='+date)
-//更新排班
-const updateSchdule = (param) => post('/scheduling/updateScheduling',param)
+const login = (param) => post('/admin/login',param)
+const logout = (param) => post('/user/logout',param)
+//获取用户信息
+const getUserInfo = (param) => post('/user/getUserInfo',param)
+const selectUserByNikeName = (token, nikeName) => get('/admin/selectUserByNikeName?token='+token + "&nikeName=" + nikeName)
+const listArticleFolderByUqsId = (uqsId) => get('/article/listArticleFolderByUqsId?uqsId='+uqsId)
+const listArticleByFolderId = (folderId) => get('/article/listArticleByFolderId?folderId=' + folderId + "&pageNum=1&pageSize=9999")
+const listArticleByuqsId = (uqsId) => get('/article/listArticleByFolderId?uqsId=' + uqsId  + "&pageNum=1&pageSize=9999")
+const getDailyData = (startDay, endDay, articleId, type, token) => get('/admin/getDailyData?startDay='+startDay + "&endDay="+ endDay +"&articleId=" + articleId + "&type=" + type + "&token=" + token)
+const listExamineArticle = (pageNum, pageSize, token) => get('/admin/listExamineArticle?token='+token + "&pageNum="+ pageNum +"&pageSize=" + pageSize)
+const listTopic = (pageNum, pageSize, token) => get('/admin/listTopic?token='+token + "&pageNum="+ pageNum +"&pageSize=" + pageSize)
+const selectTopic = (keyword, pageNum, pageSize, token) => get('/admin/selectTopic?token='+token + "&pageNum="+ pageNum +"&pageSize=" + pageSize + "&keyword=" + keyword)
+const updateTopicLock = (topicId, type, token) => post('/admin/updateTopicLock?token='+token + "&topicId="+ topicId +"&type=" + type)
+const selectArticle = (titleOrAuthor, pageNum, pageSize, token) => get('/admin/selectArticle?token='+token + "&pageNum="+ pageNum +"&pageSize=" + pageSize + "&titleOrAuthor=" + titleOrAuthor)
+const removeArticle = (articleId, token) => post('/article/remove?token='+token + "&articleId="+ articleId)
+const recoveryArticle = (articleId, token) => post('/admin/recoveryArticle?token='+token + "&articleId="+ articleId)
+const setFalseHotValue = (articleId, token, falseHotValue, todayFalseHotValue) => post('/admin/setFalseHotValue?token='+token + "&articleId="+ articleId + "&todayFalseHotValue=" + todayFalseHotValue + "&falseHotValue=" + falseHotValue)
+
+
 //暴露接口
 export default {
     baseURL,
-    getWeekSchdule,
-    getDaySchdule,
-    updateSchdule
+    login,
+    logout,
+    getUserInfo,
+    selectUserByNikeName,
+    listArticleFolderByUqsId,
+    listArticleByFolderId,
+    listArticleByuqsId,
+    getDailyData,
+    listExamineArticle,
+    listTopic,
+    selectTopic,
+    updateTopicLock,
+    selectArticle,
+    removeArticle,
+    recoveryArticle,
+    setFalseHotValue
 }

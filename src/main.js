@@ -7,6 +7,7 @@ import el from 'element-ui'
 import ts from 'tesla-ui'
 import 'tesla-ui/dist/index.css'
 import '@/assets/sass/sass-index.scss'
+import store from '@/vuex/store'
 Vue.use(el)
 Vue.use(ts)
 Vue.config.productionTip = false
@@ -15,6 +16,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

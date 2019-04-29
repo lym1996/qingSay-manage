@@ -24,10 +24,10 @@ const routerMap = [{
 
     const sideRoutes = [
         {
-            path: '/userInformation',
+            path: '/statistic',
             name: 'user',
             meta: {
-                title: '用户管理',
+                title: '青说统计',
                 icon: 'ts-shezhi'
             },
             noDropdown: true,
@@ -35,9 +35,25 @@ const routerMap = [{
             children: [{
                 path: 'index',
                 alias: '',
-                meta: { title: '用户管理' },
-                component: lazyload('base/userInformation')
-            }] 
+                meta: { title: '青说统计' },
+                component: lazyload('base/statistic')
+            }]
+        },
+        {
+            path: '/article',
+            name: 'user',
+            meta: {
+                title: '文章管理',
+                icon: 'ts-shezhi'
+            },
+            noDropdown: true,
+            component: layout,
+            children: [{
+                path: 'index',
+                alias: '',
+                meta: { title: '文章管理' },
+                component: lazyload('base/article')
+            }]
         },
     ]
 
